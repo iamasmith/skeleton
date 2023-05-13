@@ -1,17 +1,13 @@
 package server
 
 import (
+	"io"
+	"net/http"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/assert"
 )
-
-func TestStartStop(t *testing.T) {
-	server := New(":8000")
-	go server.Start()
-	server.Stop()
-}
 
 func TestStartFail(t *testing.T) {
 	assert := assert.New(t)
@@ -23,4 +19,24 @@ func TestStartFail(t *testing.T) {
 	b := New(binding)
 	assert.Error(b.Start(), "should error")
 	b.Stop()
+}
+
+func TestServe(t *testing.T) {
+	assert := assert.New(t)
+	server := New("127.0.0.1:8000")
+	m := server.Mux()
+	m.HandleFunc(
+		"/",
+		func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("OK"))
+		},
+	)
+	go server.Start()
+	client := http.Client{}
+	resp, err := client.Get("http://127.0.0.1:8000")
+	assert.NoError(err, "should not error")
+	body, err := io.ReadAll(resp.Body)
+	assert.NoError(err, "should not error")
+	assert.Equal(body, []byte("OK"), "should match")
+	server.Stop()
 }

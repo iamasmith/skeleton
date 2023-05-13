@@ -1,4 +1,4 @@
-package skeleton
+package server
 
 import (
 	"context"

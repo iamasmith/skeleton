@@ -5,6 +5,9 @@ PKG:=github.com/iamasmith/${APP}
 VP:=${PKG}/internal/version
 # TODO: Autogenerate off tag etc.
 LATEST_TAG:=$(shell git describe --abbrev=0 HEAD)
+ifeq ($(LATEST_TAG),)
+LATEST_TAG:=v0.0.0
+endif
 RELEASE_TAG=$(shell git tag --points-at HEAD)
 CURRENT_SHA=$(shell git rev-parse HEAD)
 VERSION:=${LATEST_TAG}

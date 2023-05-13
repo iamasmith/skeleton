@@ -37,6 +37,6 @@ func TestServe(t *testing.T) {
 	assert.NoError(err, "should not error")
 	body, err := io.ReadAll(resp.Body)
 	assert.NoError(err, "should not error")
-	assert.Equal(body, []byte("OK"), "should match")
+	assert.Equal([]byte("OK"), body, "should match")
 	server.Stop()
 }

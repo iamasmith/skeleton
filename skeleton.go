@@ -40,7 +40,7 @@ func (s *ServerState) Start() error {
 	for {
 		select {
 		case <-s.shutdown:
-			ctx, cancel := context.WithTimeout(context.Background(), time.Duration(3)*time.Second)
+			ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 			defer cancel()
 			s.service.Shutdown(ctx)
 		case err := <-echan:

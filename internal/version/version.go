@@ -22,7 +22,7 @@ func Name() string {
 }
 
 func Version() string {
-	return _default(LName, "v0.0.0")
+	return _default(LVersion, "v0.0.0")
 }
 
 func BuildDate() string {

@@ -18,5 +18,5 @@ func Setup(s *server.ServerState) {
 
 	// Add handlers with mux here
 	// mux := s.Mux()
-	app.logger.Infof("Starting %s %s %s (%s Built %s)", version.Name(), version.Version(), version.BuildType(), version.BuildId(), version.BuildDate())
+	app.logger.Infof("Starting %s %s %s (Build: %s, Built: %s)", version.Name(), version.Version(), version.BuildType(), version.BuildId(), version.BuildDate())
 }

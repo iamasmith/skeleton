@@ -3,7 +3,7 @@ module github.com/iamasmith/skeleton
 go 1.20
 
 require (
-	github.com/iamasmith/logtozap v0.0.0-20230513131459-4acfac04a0a2
+	github.com/iamasmith/logtozap v0.1.0
 	github.com/stretchr/testify v1.8.2
 	go.uber.org/zap v1.24.0
 )

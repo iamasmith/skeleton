@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/iamasmith/skeleton/internal/config"
 	"github.com/iamasmith/skeleton/internal/logging"
 	"github.com/iamasmith/skeleton/internal/server"
 	"github.com/iamasmith/skeleton/internal/version"
@@ -13,7 +14,7 @@ type AppState struct {
 }
 
 func Setup() *server.ServerState {
-	app := AppState{logger: logging.Setup()}
+	app := AppState{logger: logging.Setup(config.Config.LogLevel)}
 	app.s = &server.ServerState{}
 
 	// Add handlers with mux here

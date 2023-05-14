@@ -3,8 +3,7 @@ MAIN=cmd/main.go
 BINARY=bin/${APP}
 PKG:=github.com/iamasmith/${APP}
 VP:=${PKG}/internal/version
-# TODO: Autogenerate off tag etc.
-LATEST_TAG:=$(shell git describe --abbrev=0 HEAD)
+LATEST_TAG:=$(shell git describe --abbrev=0 HEAD 2>/dev/null)
 ifeq ($(LATEST_TAG),)
 LATEST_TAG:=v0.0.0
 endif
@@ -33,3 +32,8 @@ build:
 clean:
 	go clean
 	rm ${BINARY}
+
+coverreport:
+	go test --coverprofile cover.out "./internal..."
+	go tool cover -html cover.out
+	rm cover.out

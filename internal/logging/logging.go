@@ -6,8 +6,9 @@ import (
 	"go.uber.org/zap/zapcore"
 )
 
-func Setup() *zap.SugaredLogger {
+func Setup(level zapcore.Level) *zap.SugaredLogger {
 	z := zap.NewProductionConfig()
+	z.Level.SetLevel(level)
 	logger := zap.Must(z.Build()).Sugar()
 	logtozap.ToSugared(logger, zapcore.WarnLevel)
 	return logger

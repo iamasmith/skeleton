@@ -8,8 +8,9 @@ import (
 )
 
 type ConfigT struct {
-	flagSet  *flag.FlagSet
-	LogLevel zapcore.Level
+	flagSet    *flag.FlagSet
+	LogLevel   zapcore.Level
+	ListenBind string
 }
 
 var Config = ConfigT{
@@ -40,5 +41,6 @@ func (c *ConfigT) ParseArgs(args []string) {
 			return nil
 		},
 	)
+	flag.StringVar(&c.ListenBind, "listen", ":8000", "Host/Port binding for server")
 	flag.Parse(args)
 }

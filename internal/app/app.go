@@ -15,11 +15,12 @@ type AppState struct {
 
 func Setup() *server.ServerState {
 	app := AppState{logger: logging.Setup(config.Config.LogLevel)}
-	app.s = &server.ServerState{}
+	app.s = server.New(config.Config.ListenBind)
 	app.logger.Debug("ServerState created")
 
 	// Add handlers with mux here
 	// mux := s.Mux()
 	app.logger.Infof("Starting %s %s %s (Build: %s, Built: %s)", version.Name(), version.Version(), version.BuildType(), version.BuildId(), version.BuildDate())
+	app.logger.Infof("Server bound to %s", config.Config.ListenBind)
 	return app.s
 }

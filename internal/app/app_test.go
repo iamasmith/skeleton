@@ -3,10 +3,10 @@ package app
 import (
 	"testing"
 
-	"github.com/iamasmith/skeleton/internal/server"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSetup(t *testing.T) {
-	s := server.New(":8000")
-	Setup(s)
+	assert := assert.New(t)
+	assert.NotNil(Setup())
 }

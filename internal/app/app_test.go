@@ -9,7 +9,7 @@ import (
 
 func TestSetup(t *testing.T) {
 	assert := assert.New(t)
-	config.ResetForTest()
-	config.ParseArgs([]string{})
+	config.Config.ResetForTest()
+	config.Config.ParseArgs([]string{})
 	assert.NotNil(Setup())
 }

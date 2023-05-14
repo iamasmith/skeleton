@@ -8,22 +8,22 @@ import (
 )
 
 type ConfigT struct {
-	FlagSet  *flag.FlagSet
+	flagSet  *flag.FlagSet
 	LogLevel zapcore.Level
 }
 
 var Config = ConfigT{
-	FlagSet:  flag.NewFlagSet("standard", flag.ExitOnError),
+	flagSet:  flag.NewFlagSet("standard", flag.ExitOnError),
 	LogLevel: zapcore.InfoLevel,
 }
 
 // Allows us to call ParseArgs from unit tests over and over
-func ResetForTest() {
-	Config.FlagSet = flag.NewFlagSet("test", flag.ContinueOnError)
+func (c *ConfigT) ResetForTest() {
+	c.flagSet = flag.NewFlagSet("test", flag.ContinueOnError)
 }
 
-func ParseArgs(args []string) {
-	flag := Config.FlagSet
+func (c *ConfigT) ParseArgs(args []string) {
+	flag := c.flagSet
 	flag.Func(
 		"level", "debug|info|warn|error (defaults info)",
 		func(s string) error {
@@ -36,7 +36,7 @@ func ParseArgs(args []string) {
 			if !has {
 				return errors.New("INVALID LOG LEVEL")
 			}
-			Config.LogLevel = level
+			c.LogLevel = level
 			return nil
 		},
 	)

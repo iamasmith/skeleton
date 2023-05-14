@@ -9,6 +9,6 @@ import (
 )
 
 func main() {
-	config.ParseArgs(os.Args[1:])
+	config.Config.ParseArgs(os.Args[1:])
 	app.Setup().Start()
 }

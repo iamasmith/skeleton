@@ -9,13 +9,13 @@ import (
 
 func TestLogLevelFlag(t *testing.T) {
 	assert := assert.New(t)
-	ResetForTest()
-	ParseArgs([]string{})
+	Config.ResetForTest()
+	Config.ParseArgs([]string{})
 	assert.Equal(zapcore.InfoLevel, Config.LogLevel)
-	ResetForTest()
-	ParseArgs([]string{"-level=debug"})
+	Config.ResetForTest()
+	Config.ParseArgs([]string{"-level=debug"})
 	assert.Equal(zapcore.DebugLevel, Config.LogLevel)
-	ResetForTest()
-	ParseArgs([]string{"-level=unknown"})
+	Config.ResetForTest()
+	Config.ParseArgs([]string{"-level=unknown"})
 	assert.Equal(zapcore.DebugLevel, Config.LogLevel)
 }

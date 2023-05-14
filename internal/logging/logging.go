@@ -9,6 +9,6 @@ import (
 func Setup() *zap.SugaredLogger {
 	z := zap.NewProductionConfig()
 	logger := zap.Must(z.Build()).Sugar()
-	logtozap.ToSugared(logger, zapcore.InfoLevel)
+	logtozap.ToSugared(logger, zapcore.WarnLevel)
 	return logger
 }

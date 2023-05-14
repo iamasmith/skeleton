@@ -18,8 +18,8 @@ var Config = ConfigT{
 }
 
 func (c *ConfigT) setDefaults() {
-	c.LogLevel = zapcore.InfoLevel
-	c.ListenBind = ":8000"
+	c.LogLevel = logLevel
+	c.ListenBind = listenBind
 }
 
 // Allows us to call ParseArgs from unit tests over and over

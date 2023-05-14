@@ -13,7 +13,7 @@ type AppState struct {
 	s      *server.ServerState
 }
 
-func Setup() *server.ServerState {
+func Setup() (*server.ServerState, *AppState) {
 	app := AppState{logger: logging.Setup(config.Config.LogLevel)}
 	app.s = server.New(config.Config.ListenBind)
 	app.logger.Debug("ServerState created")
@@ -22,5 +22,9 @@ func Setup() *server.ServerState {
 	// mux := s.Mux()
 	app.logger.Infof("Starting %s %s %s (Build: %s, Built: %s)", version.Name(), version.Version(), version.BuildType(), version.BuildId(), version.BuildDate())
 	app.logger.Infof("Server bound to %s", config.Config.ListenBind)
-	return app.s
+	return app.s, &app
+}
+
+func (s *AppState) Stop() {
+	s.logger.Debug("App stopped")
 }

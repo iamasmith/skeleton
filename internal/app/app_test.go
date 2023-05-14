@@ -7,9 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSetup(t *testing.T) {
+func TestDefaultSetup(t *testing.T) {
 	assert := assert.New(t)
 	config.Config.ResetForTest()
 	config.Config.ParseArgs([]string{})
-	assert.NotNil(Setup())
+	server, app := Setup()
+	assert.NotNil(server)
+	assert.NotNil(app)
+	app.Stop()
 }

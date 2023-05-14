@@ -16,6 +16,7 @@ type AppState struct {
 func Setup() *server.ServerState {
 	app := AppState{logger: logging.Setup(config.Config.LogLevel)}
 	app.s = &server.ServerState{}
+	app.logger.Debug("ServerState created")
 
 	// Add handlers with mux here
 	// mux := s.Mux()

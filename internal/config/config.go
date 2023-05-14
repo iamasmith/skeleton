@@ -14,8 +14,12 @@ type ConfigT struct {
 }
 
 var Config = ConfigT{
-	flagSet:  flag.NewFlagSet("standard", flag.ExitOnError),
-	LogLevel: zapcore.InfoLevel,
+	flagSet: flag.NewFlagSet("standard", flag.ExitOnError),
+}
+
+func (c *ConfigT) setDefaults() {
+	c.LogLevel = zapcore.InfoLevel
+	c.ListenBind = ":8000"
 }
 
 // Allows us to call ParseArgs from unit tests over and over
@@ -24,6 +28,7 @@ func (c *ConfigT) ResetForTest() {
 }
 
 func (c *ConfigT) ParseArgs(args []string) {
+	c.setDefaults()
 	flag := c.flagSet
 	flag.Func(
 		"level", "debug|info|warn|error (defaults info)",

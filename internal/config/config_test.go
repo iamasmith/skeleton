@@ -17,7 +17,7 @@ func TestLogLevelFlag(t *testing.T) {
 	assert.Equal(zapcore.DebugLevel, Config.LogLevel)
 	Config.ResetForTest()
 	Config.ParseArgs([]string{"-level=unknown"})
-	assert.Equal(zapcore.DebugLevel, Config.LogLevel)
+	assert.Equal(zapcore.InfoLevel, Config.LogLevel)
 }
 
 func TestListenFlag(t *testing.T) {

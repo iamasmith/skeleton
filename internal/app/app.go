@@ -19,7 +19,7 @@ func Setup() (*server.ServerState, *AppState) {
 	app.logger.Debug("ServerState created")
 
 	// Add handlers with mux here
-	// mux := s.Mux()
+	// mux := app.s.Mux()
 	app.logger.Infof("Starting %s %s %s (Build: %s, Built: %s)", version.Name(), version.Version(), version.BuildType(), version.BuildId(), version.BuildDate())
 	app.logger.Infof("Server bound to %s", config.Config.ListenBind)
 	return app.s, &app

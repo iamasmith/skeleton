@@ -3,7 +3,7 @@ MAIN=cmd/main.go
 BINARY=bin/${APP}
 PKG:=github.com/iamasmith/${APP}
 VP:=${PKG}/internal/version
-LATEST_TAG:=$(shell git describe --abbrev=0 HEAD 2>/dev/null)
+LATEST_TAG:=$(shell git describe --tags --abbrev=0 HEAD 2>/dev/null)
 ifeq ($(LATEST_TAG),)
 LATEST_TAG:=v0.0.0
 endif
